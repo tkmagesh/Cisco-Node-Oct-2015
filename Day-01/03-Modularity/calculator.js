@@ -12,5 +12,4 @@ var calculator = {
         return x / y;
     },
 };
-module.exports.add = calculator.add;
-module.exports.subtract = calculator.subtract;
+module.exports = calculator;
