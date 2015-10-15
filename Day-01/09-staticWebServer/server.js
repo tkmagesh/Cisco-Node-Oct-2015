@@ -3,18 +3,8 @@ var http = require('http'),
     path = require('path');
 
 var server = http.createServer(function(req, res){
-    var resource = path.join(__dirname, req.url);
+    var resource = path.join(__dirname, req.url === '/' ? '/index.html' : req.url);
     if (fs.existsSync(resource)){
-        /*fs.readFile(resource, function(err, fileContents){
-            if (err){
-                console.log('error -> ', err);
-                res.statusCode = 500;
-                res.end();
-                return;
-            }
-            res.write(fileContents);
-            res.end();
-        });*/
         var stream = fs.createReadStream(resource);
         stream.pipe(res);
     } else{
