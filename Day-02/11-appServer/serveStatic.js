@@ -9,17 +9,19 @@ function isStatic(resource){
 }
 
 
-module.exports = function serveStatic(req, res, next){
-    if (isStatic(req.url.pathname)){
-        var resource = path.join(__dirname, req.url.pathname);
-        if (fs.existsSync(resource)){
-            var stream = fs.createReadStream(resource);
-            stream.pipe(res);
-        } else{
-            res.statusCode = 404;
-            res.end();
+module.exports = function(resourcePath){
+    return function serveStatic(req, res, next){
+        if (isStatic(req.url.pathname)){
+            var resource = path.join(resourcePath, req.url.pathname);
+            if (fs.existsSync(resource)){
+                var stream = fs.createReadStream(resource);
+                stream.pipe(res);
+            } else{
+                res.statusCode = 404;
+                res.end();
+            }
+        } else {
+            next();
         }
-    } else {
-        next();
     }
 }
