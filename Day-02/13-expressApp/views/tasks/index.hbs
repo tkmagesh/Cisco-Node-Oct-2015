@@ -1,0 +1,24 @@
+<style>
+    .completed{
+        color : red;
+        text-decoration: line-through;
+        font-style: italic;
+    }
+</style>
+<h1>Tasks</h1>
+<hr>
+<ol>
+    {{#each data}}
+    <li>
+        {{#if this.isCompleted}}
+            <span class='completed'>
+        {{else}}
+            <span>
+        {{/if}}
+            {{this.name}}
+        </span>
+        <a href="/tasks/toggle/{{this.id}}">X</a>
+        </li>
+    {{/each}}
+</ol>
+<a href="tasks/new">Create New</a>

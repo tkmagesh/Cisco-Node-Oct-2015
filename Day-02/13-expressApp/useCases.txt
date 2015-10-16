@@ -1,0 +1,7 @@
+Task Manager
+    get /tasks - list all the tasks 
+    get /tasks/new - show html page for accepting new task data
+    post /tasks/new - save the req data and redirect the user to /tasks
+    get /tasks/toggle/1 - toggle the completion status of the task with id 1
+    get /tasks/removeCompleted - show the list of tasks that are completed
+    post /tasks/removeCompleted - remove the list of tasks that are completed and redirec the user to /tasks
